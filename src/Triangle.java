@@ -9,12 +9,12 @@ public class Triangle {
     public int _b;
     public int _c;
 
-    private boolean isTriangle(int a, int b, int c) {
-        return a < b + c && b < a + c && c < a + b;
+    public boolean isTriangle() {
+        return _a > 0 && _b > 0 && _c > 0 && _a < _b + _c && _b < _a + _c && _c < _a + _b;
     }
 
     public Triangle(int a, int b, int c) {
-        assert a > 0 && b > 0 && c > 0 && isTriangle(a, b, c);
+        //assert isTriangle(a, b, c);
         _a = a;
         _b = b;
         _c = c;
@@ -24,8 +24,9 @@ public class Triangle {
         return (long)_a + _b + _c;
     }
 
-    public long square() {
-        return 0;
+    public double square() {
+        double hp = (double)perimeter()/2;
+        return Math.sqrt(hp*(hp-_a)*(hp-_b)*(hp-_c));
     }
 
     TriangleType type() {
