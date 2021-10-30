@@ -36,7 +36,16 @@ let questions = [["Удобно ли держать в руке?","Да", "Не�
                  ["Толщина стенки","3 мм","3 м"]
 ]
 
+function shuffle() {
+    for (let i = test_size - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [correct_answers[i], correct_answers[j]] = [correct_answers[j], correct_answers[i]];
+        [questions[i], questions[j]] = [questions[j], questions[i]];
+    }
+}
+
 function test_init() {
+    shuffle();
     for (let i = 0; i < test_size; i++) {
         test_blocks[i] = document.createElement("div");
         test_blocks[i].className = "test-block";
@@ -111,8 +120,6 @@ function check() {
                 break;
             }
         }
-        // let user_ans1 = document.getElementById('q'+i+'-o1').value;
-        // let user_ans2 = document.getElementById('q'+i+'-o2').value;
     }
 
     let percent = Math.round(correct_answers_count / test_size * 100);
